@@ -74,12 +74,13 @@
 
         // 새 글 작성 정보 데이터베이스에 저장
         $sql = "INSERT INTO board (title, author, content) VALUES ('$title', '$author', '$content')";
+        $conn->query($sql);
 
         // 작성한 게시글 정보 가져오기
         $sql = "SELECT * FROM board WHERE title='$title' AND author='$author' AND content='$content'";
         $result = $conn->query($sql);
-        
-         ?>
+       
+        ?>
          
          <table class="table">
              <thead>
@@ -99,7 +100,8 @@
                          echo "<td>" . $row['content'] . "</td>";
                          echo "</tr>";
                      }
-                 } else {
+		 } 
+		 else {
                      echo "<tr><td colspan='3'>게시글이 없습니다.</td></tr>";
                  }
                  ?>
